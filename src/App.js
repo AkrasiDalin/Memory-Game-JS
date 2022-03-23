@@ -9,6 +9,7 @@ function App() {
   for(let i=0; i<10; i++){
     cards.push({id:'card_A'+i, content:i, color:`rgb(${255-(i*5)}, ${255-(i*10)}, ${255-(i*20)})`}, {id:'card_B'+i, content:i, color:`rgb(${255-(i*5)}, ${255-(i*10)}, ${255-(i*20)})`})
   }
+  cards = [...cards].sort(() => Math.random() - .5);
 
 
 
@@ -22,8 +23,8 @@ function App() {
     }
     else if(previous.innerText == target.innerText){
       console.log('SAME prev:',previous.innerText,'curr:',target.innerText,'yes',previous.innerText === target.innerText)
-      target.style.display = 'none';
-      previous.style.display = 'none';
+      target.style.visibility = 'hidden';
+      previous.style.visibility = 'hidden';
       previous = null;
     }
     else{
@@ -36,8 +37,9 @@ function App() {
 
   return (
     <div className="App">
+      <ul style={{width:"600px"}}>
       {cards.map((card, ix)=>
-        <div key={ix} className="cardo" onClick={flip} style={{width: "100px", height:"200px", background: `${card.color}`, border: "5px solid blue"}}>
+        <div key={ix} className="cardo" onClick={flip} style={{width: "100px", height:"200px", background: `${card.color}`, margin: "10px", border: "5px solid blue", display: "inline-block "}}>
           {card.content}
         </div>
       )}
@@ -50,6 +52,7 @@ function App() {
       <div className="cardo" onClick={flip} style={{width: "100px", height:"200px", background: "red", border: "1px solid blue"}}>
         ciaoL
       </div> */}
+      </ul>
     </div>
   );
 }
